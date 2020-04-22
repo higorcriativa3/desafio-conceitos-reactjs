@@ -12,11 +12,12 @@ function App() {
       console.log(response.data)
     })
   }, []);
+
   async function handleAddRepository() {
     const response = await api.post('repositories', {
-      title: `Novo Repositorio ${Date.now()}`,
+      title: `Umbriel`,
       url: 'https://github.com/higorcriativa3/bootcamp-gostack-desafios-node-conceitos',
-      techs: 'ReactJS, NodeJS e React Native'
+      techs: ['ReactJS','NodeJS']
     });
 
     const repo = response.data;
@@ -37,14 +38,15 @@ function App() {
   return (
     <div>
       <ul data-testid="repository-list">
-        {repos.map(repo => <li key={repo.id}>
-              <p>Nome: {repo.title} </p><br/>
+        {repos.map(repo => (
+          <li key={repo.id}>
+            {repo.title}
 
             <button onClick={() => handleRemoveRepository(repo.id)}>
               Remover
             </button>
-          </li>)
-        }
+          </li>
+        ))}
         
       </ul>
 
